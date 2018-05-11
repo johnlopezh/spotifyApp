@@ -22,7 +22,7 @@ export class ArtistComponent implements OnInit {
 
         });
         this._spotifyService.getTopArtist ( parametros )
-        .pipe(map (resp => resp.tracks ))
+        .pipe(map ( (resp: any) => resp.tracks ))
         .subscribe( pistas => {
           this.tracks = pistas;
           console.log ( pistas);
