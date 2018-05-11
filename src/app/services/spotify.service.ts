@@ -5,11 +5,12 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class SpotifyService {
   artistas: any[] = [];
+  albums: any[] = [];
   urlSpotify: string = 'https://api.spotify.com/v1/';
 
   constructor( public http: HttpClient) {
   }
-  token: string = 'BQArr3VK47Q7baG07M7SYVgsTGCNhVducbDdsR9pWnVfgHDVXTpr5TtWfDT5p3Am-IXRbaa9TS-BzQS_V_g';
+  token: string = 'BQBR0xgf5QEHDCyLc0mfyL6yanV9AqB6h2ZyIa2bhebyeNRKaY_qKIB8-ExV_qycjyYH9I2ITtuKeHXA_JQ';
 
   private getHeader(): HttpHeaders {
     let headers = new HttpHeaders ({
@@ -30,7 +31,12 @@ export class SpotifyService {
   getArtista( id: string) {
     let url = `${ this.urlSpotify }artists/${ id }`;
     let headers = this.getHeader();
+    return  this.http.get(url, { headers });
 
+  }
+  getTopArtist(id: string) {
+    let url = `${ this.urlSpotify }artists/${ id }/top-tracks?country=ES`;
+    let headers = this.getHeader();
     return  this.http.get(url, { headers });
 
   }
